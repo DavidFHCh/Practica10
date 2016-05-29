@@ -20,6 +20,11 @@ StrMap *types;
 StrMap *ctrl_signals;
 string control_signal;
 
+//Here be global variables for actually executing de stuff
+int regd, regs1, regs2;
+int immediate;
+
+
 string voltea_bits(string str)
 {
     int i = 0;
