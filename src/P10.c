@@ -264,6 +264,37 @@ void extreme_foo_part_two()
 	}
 }
 
+void extreme_execution(){
+	if(control_signal[0] == '1')
+	{
+//I really hope this is the skeleton XD.
+	}
+	if(control_signal[1] == '1')
+	{
+//I really hope this is the skeleton XD.
+	}
+	if(control_signal[2] == '1')
+	{
+	//I really hope this is the skeleton XD.	
+	}
+	if(control_signal[3] == '1')
+	{
+	//I really hope this is the skeleton XD.	
+	}
+	if(control_signal[4] == '1')
+	{
+		//I really hope this is the skeleton XD.
+	}
+	if(control_signal[5] == '1')
+	{
+	//I really hope this is the skeleton XD.	
+	}
+	if(control_signal[6] == '1')
+	{
+		//I really hope this is the skeleton XD.
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	extreme_foo(open_file(get_filename(argc,argv)));
