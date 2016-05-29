@@ -108,7 +108,7 @@ StrMap *populate_types()
 	int i = 0;
 	for(i = 0; i < 18; i++)
 	{
-		sm_put(ops_map, ops[i], codes[i]);
+		sm_put(ops_map, codes[i], ops[i]);
 	}
 
 	return ops_map;
@@ -190,6 +190,7 @@ int extreme_foo(FILE *file)
 void decode_instruction(string inst_reg){
 	string op = "";
 	string tipo = malloc(1);
+	string sign = malloc(7);
 	for(int i = 0; i < 6; i++)
 	{
 		op[i] = inst_reg[i];
@@ -197,19 +198,20 @@ void decode_instruction(string inst_reg){
 	sm_get(types,op,tipo,1);
 	if(strcmp(tipo,"i"))
 	{
-		//something
+		sm_get(ctrl_signals,op,sign,7);		// en teoria esto deberia regresar las señales de control.
 	}
 	else if(strcmp(tipo,"j"))
 	{
-		//something else
+		sm_get(ctrl_signals,op,sign,7);     // We divide this in cases for clarity  when following the datapath.
 	}
 	else if(strcmp(tipo,"r"))
 	{
-
+		sm_get(ctrl_signals,op,sign,7);		// if you don't like it, why r u reading it???
 	}
 	else
 	{
-		//brutal error.
+		printf("Something terrible has happened, and it is your fault.");
+		exit(1);
 	}
 }
 
