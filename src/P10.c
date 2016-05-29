@@ -1,4 +1,4 @@
-//made by two mad m8, looking for social acceptance. So far Dixego is the only one succesful in that matter.
+//made by two mad m8s, looking for social acceptance. So far Dixego is the only one succesful in that matter.
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -96,12 +96,12 @@ StrMap *populate_types()
 	StrMap *ops_map = sm_new(18);
 	// sorry mom
 			// clearly you can see this was Diego's idea.
-	string ops[] = {"lw", "lh", "lb", "sw", "sh", "sb", "add", "addi", "sub", "subi", "and", "andi", "or", "ori", "beqz", "bgtz", "j", "jr"};
+	string ops[] = {"i", "i", "i", "i", "i", "i", "r", "i", "r", "i", "r", "i", "r", "i", "i", "i", "j", "r"};
 	string codes[] = {"000000", "00001", "000010", "000011", "000100", "000101", "000110", "000111", "001000", "001001", "001010", "001011", "001100", "001101", "001110", "001111", "010000", "010001"};
 	int i = 0;
 	for(i = 0; i < 18; i++)
 	{
-		sm_put(ops_map, codes[i], ops[i]);
+		sm_put(ops_map, ops[i], codes[i]);
 	}
 
 	return ops_map;
@@ -167,7 +167,29 @@ int extreme_foo(FILE *file)
 }
 
 void decode_instruction(string inst_reg){
+	string op = "";
+	string tipo = malloc(1);
+	for(int i = 0; i < 6; i++)
+	{
+		op[i] = inst_reg[i];
+	}
+	sm_get(types,op,tipo,1);
+	if(strcmp(tipo,"i"))
+	{
+		//something
+	}
+	else if(strcmp(tipo,"j"))
+	{
+		//something else
+	}
+	else if(strcmp(tipo,"r"))
+	{
 
+	}
+	else
+	{
+		//brutal error.
+	}
 }
 
 void extreme_foo_part_two()
