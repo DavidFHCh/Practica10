@@ -130,11 +130,25 @@ int extreme_foo(FILE *file)
 	fgets(line, 35, file);
 	extreme2 = strb_to_i(line,32);
 	text = malloc(extreme1*sizeof(string));
+	
 	while(fgets(line, 35, file) != NULL && datacunt < extreme1){
 		data[datacunt] = strdup(line);
+		//printf("%s", data[datacunt]);
+		datacunt++;
 	}
+	
 	while(fgets(line, 35, file) != NULL && textcunt < extreme2){
-		text[textcunt] = strdup(line);	
+		text[textcunt] = strdup(line);
+		//printf("%s", data[datacunt]);
+		textcunt++;
+	}
+}
+
+void extreme_foo_part_two()
+{
+	string instruction;
+	while(1){
+		printf("aquí va el ciclo de ejecución\n")
 	}
 }
 
