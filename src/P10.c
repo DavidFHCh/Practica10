@@ -103,8 +103,8 @@ StrMap *populate_types()
 	StrMap *ops_map = sm_new(18);
 	// sorry mom
 			// clearly you can see this was Diego's idea.
-	string ops[] = {"i", "i", "i", "i", "i", "i", "r", "i", "r", "i", "r", "i", "r", "i", "i", "i", "j", "r"};
 	string codes[] = {"000000", "00001", "000010", "000011", "000100", "000101", "000110", "000111", "001000", "001001", "001010", "001011", "001100", "001101", "001110", "001111", "010000", "010001"};
+	string ops[] = {"i", "i", "i", "i", "i", "i", "r", "i", "r", "i", "r", "i", "r", "i", "i", "i", "j", "r"};
 	int i = 0;
 	for(i = 0; i < 18; i++)
 	{
@@ -187,6 +187,35 @@ int extreme_foo(FILE *file)
 	}
 }
 
+void extreme_execution()
+{
+	string op = malloc(5);
+	string tipo = malloc(1);
+	for(i = 0; i < 6; i++)
+	{
+		op[i] = inst_reg[i];
+	}
+	//shit shit fuck fuck fuck
+	sm_get(types,op, tipo, 1);
+	if(strcmp(tipo,"i") == 0)
+	{
+		execute1(op);
+	}else if(strcmp(tipo, "r"), ==0)
+	{
+		execute2(op);
+	}else if(strcmp(tipo, "r"), == 0)
+	{
+		execute3(op);
+	}
+}
+
+void execute2(string op)
+{
+
+}
+
+
+
 void decode_instruction(string inst_reg){
 	string op = malloc(6);
 	string tipo = malloc(1);
@@ -264,72 +293,7 @@ void extreme_foo_part_two()
 	}
 }
 
-void extreme_execution()
-{
-	string op = malloc(5);
-	for(i = 0; i < 6; i++)
-	{
-		op[i] = inst_reg[i];
-	}
 
-	//shit shit fuck fuck fuck
-
-	if(strcmp(op,"000000") == 0)
-	{
-
-	}else if(strcmp(op,"00001") == 0)
-	{
-
-	}else if(strcmp(op,"000010") == 0)
-	{
-		
-	}else if(strcmp(op,"000011") == 0)
-	{
-		
-	}else if(strcmp(op,"000100") == 0)
-	{
-		
-	}else if(strcmp(op,"000101") == 0)
-	{
-		
-	}else if(strcmp(op,"000110") == 0)
-	{
-		
-	}else if(strcmp(op,"000111") == 0)
-	{
-		
-	}else if(strcmp(op,"001000") == 0)
-	{
-		
-	}else if(strcmp(op,"001001") == 0)
-	{
-		
-	}else if(strcmp(op,"001010") == 0)
-	{
-		
-	}else if(strcmp(op,"001011") == 0)
-	{
-		
-	}else if(strcmp(op,"001100") == 0)
-	{
-		
-	}else if(strcmp(op,"001101") == 0)
-	{
-		
-	}else if(strcmp(op,"001110") == 0)
-	{
-		
-	}else if(strcmp(op,"001111") == 0)
-	{
-		
-	}else if(strcmp(op,"010000") == 0)
-	{
-		
-	}else if(strcmp(op,"010001") == 0)
-	{
-		
-	}
-}
 
 int main(int argc, char *argv[])
 {
