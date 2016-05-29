@@ -4,9 +4,10 @@ OBJ2 = p0.o list.o strmap.o
 default: P10 p9
 
 P10: P10.o 
-	gcc -o P10 P10.o -lm
-P10.o : P10.c
-	gcc -c P10.c
+	gcc -o P10 P10.o strmap.o -lm
+
+P10.o : P10.c $(OBJ)
+	gcc -c P10.c $(OBJ)
 
 
 p9: p9.o

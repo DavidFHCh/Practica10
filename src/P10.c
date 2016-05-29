@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include "strmap.h"
 
 typedef char* string;
 
@@ -16,6 +17,7 @@ int registro[32];
 int RAM[1024];
 string inst_reg;
 StrMap *types;
+StrMap *ctrl_signals;
 string control_signal;
 
 string voltea_bits(string str)
@@ -105,6 +107,20 @@ StrMap *populate_types()
 	}
 
 	return ops_map;
+}
+
+StrMap *populate_ctrl_signals()
+{
+	StrMap *signals_map = sm_new(18);
+	string codes[] = {"000000", "00001", "000010", "000011", "000100", "000101", "000110", "000111", "001000", "001001", "001010", "001011", "001100", "001101", "001110", "001111", "010000", "010001"};
+	string signals[] = {"1100100", "1100100", "1100100", "0100010", "0100010", "0100010", "1110001", "1100001","1110001", "1100001", "1110001", "1100001","1110001","1100001", "1111111", "0101000","0011000", "0101000"};
+	int i = 0; 
+	for(i = 0; i < 18; i++)
+	{
+		sm_put(signals_map, codes[i], signals[i]);
+	}
+
+	return signals_map;
 }
 
 string get_filename(int argc, char *argv[])
