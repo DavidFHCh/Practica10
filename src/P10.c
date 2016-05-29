@@ -7,8 +7,14 @@ typedef char* string;
 
 string *data;
 string *text;
+int data_length;
+int text_length;
+int pc;
 int registro[32];
 int RAM[1024];
+string inst_reg;
+StrMap *types;
+string control_signal;
 
 string voltea_bits(string str)
 {
@@ -83,6 +89,21 @@ int strb_to_i(string str, int n)
     return res;
 }
 
+StrMap *populate_types()
+{
+	StrMap *ops_map = sm_new(18);
+	// sorry mom
+	string ops[] = {"lw", "lh", "lb", "sw", "sh", "sb", "add", "addi", "sub", "subi", "and", "andi", "or", "ori", "beqz", "bgtz", "j", "jr"};
+	string codes[] = {"000000", "00001", "000010", "000011", "000100", "000101", "000110", "000111", "001000", "001001", "001010", "001011", "001100", "001101", "001110", "001111", "010000", "010001"};
+	int i = 0;
+	for(i = 0; i < 18; i++)
+	{
+		sm_put(ops_map, codes[i], ops[i]);
+	}
+
+	return ops_map;
+}
+
 string get_filename(int argc, char *argv[])
 {
 	string filename = malloc(100); // Arbitrary 100 char limit to file size because why not.
@@ -122,33 +143,38 @@ FILE *open_file(string filename)
 int extreme_foo(FILE *file)
 {
 	string line;
-	int extreme2 = 0, extreme1 = 0,datacunt = 0,textcunt = 0;
+	int datacunt = 0,textcunt = 0;
 	line = malloc(35);
 	fgets(line, 35, file);
-	extreme1 = strb_to_i(line,32);
-	data = malloc(extreme1*sizeof(string));
+	data_length = strb_to_i(line,32);
+	data = malloc(data_length*sizeof(string));
 	fgets(line, 35, file);
-	extreme2 = strb_to_i(line,32);
-	text = malloc(extreme1*sizeof(string));
+	text_length = strb_to_i(line,32);
+	text = malloc(text_length*sizeof(string));
 	
-	while(fgets(line, 35, file) != NULL && datacunt < extreme1){
+	while(fgets(line, 35, file) != NULL && datacunt < data_length){
 		data[datacunt] = strdup(line);
-		//printf("%s", data[datacunt]);
 		datacunt++;
 	}
 	
-	while(fgets(line, 35, file) != NULL && textcunt < extreme2){
+	while(fgets(line, 35, file) != NULL && textcunt < text_length){
 		text[textcunt] = strdup(line);
-		//printf("%s", data[datacunt]);
 		textcunt++;
 	}
 }
 
+void decode_instruction(string inst_reg){
+
+}
+
 void extreme_foo_part_two()
 {
-	string instruction;
-	while(1){
-		printf("aquí va el ciclo de ejecución\n")
+	pc = 0;
+	types = populate_types();
+
+	while(pc < text_length){
+		inst_reg = text[pc];
+		decode_instruction(inst_reg);
 	}
 }
 
