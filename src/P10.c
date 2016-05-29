@@ -188,7 +188,7 @@ int extreme_foo(FILE *file)
 }
 
 void decode_instruction(string inst_reg){
-	string op = "";
+	string op = malloc(6);
 	string tipo = malloc(1);
 	string sign = malloc(7);
 	control_signal = malloc(7);
@@ -210,7 +210,7 @@ void decode_instruction(string inst_reg){
 	}
 	sm_get(types,op,tipo,1);
 
-	if(strcmp(tipo,"i"))
+	if(strcmp(tipo,"i") == 0)
 	{
 		sm_get(ctrl_signals,op,control_signal,7);		// en teoria esto deberia regresar las señales de control.
 
@@ -225,7 +225,7 @@ void decode_instruction(string inst_reg){
 		regs1= strb_to_i(rs1, 5);
 		immediate = strb_to_i(im, 16);
 	}
-	else if(strcmp(tipo,"j"))
+	else if(strcmp(tipo,"j") == 0)
 	{
 		sm_get(ctrl_signals,op,control_signal,7);     // We divide this in cases for clarity  when following the datapath.
 		for(i = 0; i <26; i++)
@@ -233,7 +233,7 @@ void decode_instruction(string inst_reg){
 		address = strb_to_i(desp, 26);
 
 	}
-	else if(strcmp(tipo,"r"))
+	else if(strcmp(tipo,"r") == 0)
 	{
 		sm_get(ctrl_signals,op,control_signal,7);		// if you don't like it, why r u reading it???
 		for(i = 0; i < 6; i++)
@@ -264,34 +264,70 @@ void extreme_foo_part_two()
 	}
 }
 
-void extreme_execution(){
-	if(control_signal[0] == '1')
+void extreme_execution()
+{
+	string op = malloc(5);
+	for(i = 0; i < 6; i++)
 	{
-//I really hope this is the skeleton XD.
+		op[i] = inst_reg[i];
 	}
-	if(control_signal[1] == '1')
+
+	//shit shit fuck fuck fuck
+
+	if(strcmp(op,"000000") == 0)
 	{
-//I really hope this is the skeleton XD.
-	}
-	if(control_signal[2] == '1')
+
+	}else if(strcmp(op,"00001") == 0)
 	{
-	//I really hope this is the skeleton XD.	
-	}
-	if(control_signal[3] == '1')
+
+	}else if(strcmp(op,"000010") == 0)
 	{
-	//I really hope this is the skeleton XD.	
-	}
-	if(control_signal[4] == '1')
+		
+	}else if(strcmp(op,"000011") == 0)
 	{
-		//I really hope this is the skeleton XD.
-	}
-	if(control_signal[5] == '1')
+		
+	}else if(strcmp(op,"000100") == 0)
 	{
-	//I really hope this is the skeleton XD.	
-	}
-	if(control_signal[6] == '1')
+		
+	}else if(strcmp(op,"000101") == 0)
 	{
-		//I really hope this is the skeleton XD.
+		
+	}else if(strcmp(op,"000110") == 0)
+	{
+		
+	}else if(strcmp(op,"000111") == 0)
+	{
+		
+	}else if(strcmp(op,"001000") == 0)
+	{
+		
+	}else if(strcmp(op,"001001") == 0)
+	{
+		
+	}else if(strcmp(op,"001010") == 0)
+	{
+		
+	}else if(strcmp(op,"001011") == 0)
+	{
+		
+	}else if(strcmp(op,"001100") == 0)
+	{
+		
+	}else if(strcmp(op,"001101") == 0)
+	{
+		
+	}else if(strcmp(op,"001110") == 0)
+	{
+		
+	}else if(strcmp(op,"001111") == 0)
+	{
+		
+	}else if(strcmp(op,"010000") == 0)
+	{
+		
+	}else if(strcmp(op,"010001") == 0)
+	{
+		
 	}
 }
 
