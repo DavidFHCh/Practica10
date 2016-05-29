@@ -22,7 +22,7 @@ string control_signal;
 
 //Here be global variables for actually executing de stuff
 int regd, regs1, regs2;
-int immediate;
+int immediate, address;
 
 
 string voltea_bits(string str)
@@ -220,12 +220,18 @@ void decode_instruction(string inst_reg){
 			rs1[i] = inst_reg[i+11];
 		for(i = 0; i < 16; i++)
 			im[i] = inst_reg[i+16];
+
+		regd = strb_to_i(rd, 5);
+		regs1= strb_to_i(rs1, 5);
+		immediate = strb_to_i(im, 16);
 	}
 	else if(strcmp(tipo,"j"))
 	{
 		sm_get(ctrl_signals,op,control_signal,7);     // We divide this in cases for clarity  when following the datapath.
 		for(i = 0; i <26; i++)
 			desp[i] = inst_reg[i+6];
+		address = strb_to_i(desp, 26);
+
 	}
 	else if(strcmp(tipo,"r"))
 	{
@@ -236,6 +242,9 @@ void decode_instruction(string inst_reg){
 			rs1[i] = inst_reg[i+11];
 		for(i = 0; i < 6; i++)
 			rs2[i] = inst_reg[i+16];
+		regd = strb_to_i(rd, 5);
+		regs1= strb_to_i(rs1, 5);
+		regs2= strb_to_i(rs2, 5);
 	}
 	else
 	{
