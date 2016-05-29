@@ -191,22 +191,51 @@ void decode_instruction(string inst_reg){
 	string op = "";
 	string tipo = malloc(1);
 	string sign = malloc(7);
-	for(int i = 0; i < 6; i++)
+	control_signal = malloc(7);
+	string rd   = malloc(5),
+		   rs1  = malloc(5), 
+		   rs2  = malloc(5), 
+		   im   = malloc(16),
+		   desp = malloc(26);
+	int i;
+
+	//[1,1,0,1,0,0,
+	//	1,1,1,0,0,
+	//	0,1,1,0,0,
+	//	0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,1]
+
+	for(i = 0; i < 6; i++)
 	{
 		op[i] = inst_reg[i];
 	}
 	sm_get(types,op,tipo,1);
+
 	if(strcmp(tipo,"i"))
 	{
-		sm_get(ctrl_signals,op,sign,7);		// en teoria esto deberia regresar las señales de control.
+		sm_get(ctrl_signals,op,control_signal,7);		// en teoria esto deberia regresar las señales de control.
+
+		for(i = 0; i < 6; i++)
+			rd[i] = inst_reg[i+6];
+		for(i = 0; i < 6; i++)
+			rs1[i] = inst_reg[i+11];
+		for(i = 0; i < 16; i++)
+			im[i] = inst_reg[i+16];
 	}
 	else if(strcmp(tipo,"j"))
 	{
-		sm_get(ctrl_signals,op,sign,7);     // We divide this in cases for clarity  when following the datapath.
+		sm_get(ctrl_signals,op,control_signal,7);     // We divide this in cases for clarity  when following the datapath.
+		for(i = 0; i <26; i++)
+			desp[i] = inst_reg[i+6];
 	}
 	else if(strcmp(tipo,"r"))
 	{
-		sm_get(ctrl_signals,op,sign,7);		// if you don't like it, why r u reading it???
+		sm_get(ctrl_signals,op,control_signal,7);		// if you don't like it, why r u reading it???
+		for(i = 0; i < 6; i++)
+			rd[i] = inst_reg[i+6];
+		for(i = 0; i < 6; i++)
+			rs1[i] = inst_reg[i+11];
+		for(i = 0; i < 6; i++)
+			rs2[i] = inst_reg[i+16];
 	}
 	else
 	{
