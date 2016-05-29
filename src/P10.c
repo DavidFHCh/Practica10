@@ -24,6 +24,9 @@ string control_signal;
 int regd, regs1, regs2;
 int immediate, address;
 
+void execute1(string op);
+void execute2(string op);
+void execute3(string op);
 
 string voltea_bits(string str)
 {
@@ -191,7 +194,7 @@ void extreme_execution()
 {
 	string op = malloc(5);
 	string tipo = malloc(1);
-	for(i = 0; i < 6; i++)
+	for(int i = 0; i < 6; i++)
 	{
 		op[i] = inst_reg[i];
 	}
@@ -200,20 +203,41 @@ void extreme_execution()
 	if(strcmp(tipo,"i") == 0)
 	{
 		execute1(op);
-	}else if(strcmp(tipo, "r"), ==0)
+	}else if(strcmp(tipo, "r") ==0)
 	{
 		execute2(op);
-	}else if(strcmp(tipo, "r"), == 0)
+	}else if(strcmp(tipo, "j") == 0)
 	{
 		execute3(op);
 	}
 }
+void execute1(string op){}
 
 void execute2(string op)
 {
+	int res;
+	if(strcmp(op,"000110") == 0) //add
+	{
+		res = registro[regs1] + registro[regs2];
+	}else if(strcmp(op, "001000") == 0) //sub
+	{
+		res = registro[regs1] - registro[regs2];
+	}else if(strcmp(op, "001010") == 0) //and
+	{
+		res = registro[regs1] & registro[regs2];
+	}else if(strcmp(op, "001100") == 0) //or
+	{
+		res = registro[regs1] | registro[regs2];
+	}else if(strcmp(op, "010001") == 0) //jr
+	{
+		pc = registro[regd];
+	}
 
+	if(control_signal[0] == '1')
+		registro[regd] = res;
 }
 
+void execute3(string op){}
 
 
 void decode_instruction(string inst_reg){
