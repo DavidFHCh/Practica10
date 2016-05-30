@@ -215,7 +215,7 @@ void execute1(string op)
 {
 	if(strcmp(op,"000000") == 0) //lw
 	{
-		RAM[regs1] = text[immediate];
+		registro[regs1] = RAM[text[immediate]];
 	}
 	else if(strcmp(op,"000001") == 0) //lh
 	{
