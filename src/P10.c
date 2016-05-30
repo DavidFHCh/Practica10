@@ -171,20 +171,20 @@ int extreme_foo(FILE *file)
 {
 	string line;
 	int datacunt = 0,textcunt = 0;
-	line = malloc(35);
-	fgets(line, 35, file);
-	data_length = strb_to_i(line,32);
+	line = malloc(33);
+	fgets(line, 33, file);
+	data_length = strb_to_i(line,33);
 	data = malloc(data_length*sizeof(string));
-	fgets(line, 35, file);
-	text_length = strb_to_i(line,32);
+	fgets(line, 33, file);
+	text_length = strb_to_i(line,33);
 	text = malloc(text_length*sizeof(string));
 	
-	while(fgets(line, 35, file) != NULL && datacunt < data_length){
+	while(fgets(line, 33, file) != NULL && datacunt < data_length){
 		data[datacunt] = strdup(line);
 		datacunt++;
 	}
 	
-	while(fgets(line, 35, file) != NULL && textcunt < text_length){
+	while(fgets(line, 33, file) != NULL && textcunt < text_length){
 		text[textcunt] = strdup(line);
 		textcunt++;
 	}
@@ -217,23 +217,23 @@ void execute1(string op)
 	int res;
 	if(strcmp(op,"000000") == 0) //lw
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
+		registro[regd] = RAM[strb_to_i(data[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000001") == 0) //lh
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
+		registro[regd] = RAM[strb_to_i(data[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000010") == 0) //lb
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
+		registro[regd] = RAM[strb_to_i(data[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000011") == 0) //sw
 	{
-		RAM[regd] = registro[strb_to_i(text[immediate + regs1],32)];
+		RAM[regd] = registro[strb_to_i(data[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000100") == 0) //sh
 	{
-		RAM[regd] = registro[strb_to_i(text[immediate + regs1],32)];
+		RAM[regd] = registro[strb_to_i(data[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000111") == 0) //addi
 	{
@@ -373,7 +373,7 @@ void extreme_foo_part_two()
 
 	while(pc < text_length){
 		inst_reg = text[pc];
-		printf("%s\n", inst_reg);
+		printf("%s\n", data[0]);
 		decode_instruction(inst_reg);
 		extreme_execution();
 	}
