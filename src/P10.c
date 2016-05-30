@@ -211,7 +211,25 @@ void extreme_execution()
 		execute3(op);
 	}
 }
-void execute1(string op){}
+void execute1(string op)
+{
+	if(strcmp(op,"000000") == 0) //lw
+	{
+		RAM[regs1] = text[immediate];
+	}
+	else if(strcmp(op,"000001") == 0) //lh
+	{
+		RAM[regs1] = text[immediate];
+	}
+	else if(strcmp(op,"000001") == 0) //lb
+	{
+		RAM[regs1] = text[immediate];
+	}
+	else if(strcmp(op,"000001") == 0) //sw
+	{
+		RAM[regs1] = text[immediate];
+	}
+}
 
 void execute2(string op)
 {
