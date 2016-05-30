@@ -215,27 +215,27 @@ void execute1(string op)
 {
 	if(strcmp(op,"000000") == 0) //lw
 	{
-		registro[regd] = RAM[text[immediate + regs1]];
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
 	}
 	else if(strcmp(op,"000001") == 0) //lh
 	{
-		registro[regd] = RAM[text[immediate + regs1]];
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
 	}
 	else if(strcmp(op,"000010") == 0) //lb
 	{
-		registro[regd] = RAM[text[immediate + regs1]];
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
 	}
 	else if(strcmp(op,"000011") == 0) //sw
 	{
-		RAM[regd] = registro[text[immediate + regs1]];
+		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
 	}
 	else if(strcmp(op,"000100") == 0) //sh
 	{
-		RAM[regd] = registro[text[immediate + regs1]];
+		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
 	}
 	else if(strcmp(op,"000101") == 0) //sb
 	{
-		RAM[regd] = registro[text[immediate + regs1]];
+		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
 	}
 }
 
