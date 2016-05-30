@@ -373,6 +373,7 @@ void extreme_foo_part_two()
 
 	while(pc < text_length){
 		inst_reg = text[pc];
+		printf("%s\n", inst_reg);
 		decode_instruction(inst_reg);
 		extreme_execution();
 	}
@@ -382,7 +383,8 @@ void extreme_foo_part_two()
 
 int main(int argc, char *argv[])
 {
-	extreme_foo(open_file(get_filename(argc,argv)));	
+	extreme_foo(open_file(get_filename(argc,argv)));
+	extreme_foo_part_two();
 	// end of functional programming :(
 
 
