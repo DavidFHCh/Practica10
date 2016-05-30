@@ -213,6 +213,7 @@ void extreme_execution()
 }
 void execute1(string op)
 {
+	int res;
 	if(strcmp(op,"000000") == 0) //lw
 	{
 		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
@@ -233,10 +234,35 @@ void execute1(string op)
 	{
 		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
 	}
-	else if(strcmp(op,"000101") == 0) //sb
+	else if(strcmp(op,"000111") == 0) //addi
 	{
-		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
+		res = registro[regs1] + immediate;
 	}
+	else if(strcmp(op,"001001") == 0) //subi
+	{
+		res = registro[regs1] - immediate;
+	}
+	else if(strcmp(op,"001011") == 0) //andi
+	{
+		res = registro[regs1] & immediate;
+	}
+	else if(strcmp(op,"001101") == 0) //ori
+	{
+		res = registro[regs1] | immediate;
+	}
+	else if(strcmp(op,"001101") == 0) //beqz
+	{
+		if(registro[regd] == 0)
+			pc = immediate;
+	}
+	else if(strcmp(op,"001111") == 0) //bgtz
+	{
+		if(registro[regd] > 0)
+			pc = immediate;
+	}
+
+	if(control_signal[0] == '1')
+		registro[regd] = res;	
 }
 
 void execute2(string op)
@@ -263,7 +289,13 @@ void execute2(string op)
 		registro[regd] = res;
 }
 
-void execute3(string op){}
+void execute3(string op)
+{
+	if(strcmp(op,"010000") == 0) //j
+	{
+		pc = address;
+	}
+}
 
 
 void decode_instruction(string inst_reg){
