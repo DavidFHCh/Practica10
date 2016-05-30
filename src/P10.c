@@ -216,23 +216,23 @@ void execute1(string op)
 	int res;
 	if(strcmp(op,"000000") == 0) //lw
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000001") == 0) //lh
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000010") == 0) //lb
 	{
-		registro[regd] = RAM[strb_to_i(text[immediate + regs1]],32);
+		registro[regd] = RAM[strb_to_i(text[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000011") == 0) //sw
 	{
-		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
+		RAM[regd] = registro[strb_to_i(text[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000100") == 0) //sh
 	{
-		RAM[regd] = registro[strb_to_i(text[immediate + regs1]],32);
+		RAM[regd] = registro[strb_to_i(text[immediate + regs1],32)];
 	}
 	else if(strcmp(op,"000111") == 0) //addi
 	{
