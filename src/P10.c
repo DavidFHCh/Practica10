@@ -213,6 +213,7 @@ void extreme_execution()
 }
 void execute1(string op)
 {
+	pc++;
 	int res;
 	if(strcmp(op,"000000") == 0) //lw
 	{
@@ -267,6 +268,7 @@ void execute1(string op)
 
 void execute2(string op)
 {
+	pc++;
 	int res;
 	if(strcmp(op,"000110") == 0) //add
 	{
@@ -372,6 +374,7 @@ void extreme_foo_part_two()
 	while(pc < text_length){
 		inst_reg = text[pc];
 		decode_instruction(inst_reg);
+		extreme_execution();
 	}
 }
 
@@ -379,7 +382,7 @@ void extreme_foo_part_two()
 
 int main(int argc, char *argv[])
 {
-	extreme_foo(open_file(get_filename(argc,argv)));
+	extreme_foo(open_file(get_filename(argc,argv)));	
 	// end of functional programming :(
 
 
